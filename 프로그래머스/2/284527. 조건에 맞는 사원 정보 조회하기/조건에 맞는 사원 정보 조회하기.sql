@@ -1,24 +1,14 @@
 SELECT 
-    SUM(G.SCORE) AS SCORE, 
-    E.EMP_NO, 
-    E.EMP_NAME, 
-    E.POSITION, 
+    SUM(G.SCORE) AS SCORE,
+    G.EMP_NO, 
+    E.EMP_NAME,
+    E.POSITION,
     E.EMAIL
-FROM    
+FROM
     HR_EMPLOYEES E
-JOIN 
+JOIN
     HR_GRADE G
     ON E.EMP_NO = G.EMP_NO
-WHERE 
-    E.EMP_NO = (
-        SELECT 
-            EMP_NO
-        FROM 
-            HR_GRADE
-        GROUP BY 
-            EMP_NO
-        ORDER BY  
-            SUM(SCORE) DESC
-        LIMIT 1
-    )
-GROUP BY E.EMP_NO
+GROUP BY G.EMP_NO
+ORDER BY SUM(G.SCORE) DESC
+LIMIT 1
