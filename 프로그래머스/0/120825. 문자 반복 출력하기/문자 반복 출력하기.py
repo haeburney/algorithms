@@ -1,8 +1,7 @@
 def solution(my_string, n):
     answer = ''
-    stringList = list(my_string)
     
-    for i in range(len(stringList)):
-        answer += stringList[i] * n
+    for char in my_string:
+        answer += char * n
     
     return answer
